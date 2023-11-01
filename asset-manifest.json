@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/Fetch-Whether/static/css/main.f159575d.css",
+    "main.js": "/Fetch-Whether/static/js/main.29657d6a.js",
+    "static/media/humidity.png": "/Fetch-Whether/static/media/humidity.0fa55e43b0d65b99a3fa.png",
+    "static/media/OIP.png": "/Fetch-Whether/static/media/OIP.a3decb43da3cb679296a.png",
+    "static/media/wind.png": "/Fetch-Whether/static/media/wind.51b8a36c8909b77f0ead.png",
+    "index.html": "/Fetch-Whether/index.html",
+    "main.f159575d.css.map": "/Fetch-Whether/static/css/main.f159575d.css.map",
+    "main.29657d6a.js.map": "/Fetch-Whether/static/js/main.29657d6a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f159575d.css",
+    "static/js/main.29657d6a.js"
+  ]
+}
