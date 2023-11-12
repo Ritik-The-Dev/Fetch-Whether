@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './FetchWhether.css'
 import search from './images/search.png'
 import humidity from './images/humidity.png'
@@ -7,9 +7,9 @@ import oip from './images/OIP.png'
 const FetchWhether = () => {
 
     const [city,setCity] = useState("");
-    const [temp,setTemp] = useState("0");
-    const [humid,setHumid] = useState("0");
-    const [wind,setWind] = useState("0");
+    const [temp,setTemp] = useState("0°C");
+    const [humid,setHumid] = useState("0%");
+    const [wind,setWind] = useState("0 km/hr");
 
     const key = "e8ed5c7672fca8dfc041faf5c4e9f810";
     let GetWhetherInfo = async()=>{
@@ -17,11 +17,14 @@ const FetchWhether = () => {
         await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}&units=metric`)
         .then (Res => Res.json())
         .then(Res => {
-            setTemp(Res.main.temp)
-            setHumid(Res.main.humidity)
-            setWind(Res.wind.speed)
+            setTemp(`${Res.main.temp}°C`)
+            setHumid(`${Res.main.humidity}%`)
+            setWind(`${Res.wind.speed} km/hr`)
         })}
         catch(err){
+            setTemp("error 404")
+            setHumid("error 404")
+            setWind("error 404")
             setCity("Search Again Please")
         }
     }
@@ -30,12 +33,12 @@ const FetchWhether = () => {
         let inpu = document.querySelector("#iut")
         let cut = document.querySelector("#searchbtn");
         cut.addEventListener("click", ()=>{
-            setCity(inpu.value)
-        })
+            if(inpu.value !== ""){
+            setCity(inpu.value);
+        }})
         inpu.value = "";
         GetWhetherInfo();
     }
-
   return (
     <div>
           <div className="coner">
@@ -48,7 +51,7 @@ const FetchWhether = () => {
             <img src={oip} alt="temp-images" id="temp-images" />
         </div>
         <div className="temp">
-            <h1 id="tem">{temp}°C</h1>
+            <h1 id="tem">{temp}</h1>
         </div>
         <div className="city">
             <h1 id="city">{city}</h1>
@@ -58,7 +61,7 @@ const FetchWhether = () => {
                 <div className="humid">
                 <img src={humidity} alt="humidity" id="humi" />
                 <div className="lo">
-                <p id="humiditypercent">{humid}%</p>
+                <p id="humiditypercent">{humid}</p>
                 <p>humidity</p>
             </div>
                 </div>
@@ -67,7 +70,7 @@ const FetchWhether = () => {
                 <div className="humid">
                 <img src={winde} alt="wind" id="humi"/>
                 <div className="lo">
-                <p id="windspeed">{wind} km/hr</p>
+                <p id="windspeed">{wind}</p>
                 <p>Wind Speed</p>
                 </div>
                 </div>
